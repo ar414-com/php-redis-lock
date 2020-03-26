@@ -10,9 +10,9 @@ $lockTimeOut = 5;
 $redisLock = new RedisLock($redis,$lockTimeOut);
 
 $lockKey = 'lock:user:wallet:uid:1001';
-$isGet = $redisLock->getLock($lockKey);
-var_dump($isGet);
-if($isGet) {
+$lockExpire = $redisLock->getLock($lockKey);
+var_dump($lockExpire);
+if($lockExpire) {
     try {
         //select user wallet balance for uid
         $userBalance = 100;
@@ -21,14 +21,15 @@ if($isGet) {
 
         if($userBalance >= $goodsPrice){
             $newUserBalance = $userBalance - $goodsPrice;
+            var_dump($newUserBalance);
             //TODO set user balance in db
         }else{
             throw new Exception('user balance insufficient');
         }
-        $redisLock->releaseLock($lockKey,$isGet);
+        $redisLock->releaseLock($lockKey,$lockExpire);
     }
     catch (\Throwable $throwable) {
-        $redisLock->releaseLock($lockKey,$isGet);
+        $redisLock->releaseLock($lockKey,$lockExpire);
         throw new Exception('Busy network');
     }
 }
