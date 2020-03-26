@@ -2,6 +2,7 @@
 
 ![](https://img.shields.io/badge/build-passing-brightgreen)
 ![](https://img.shields.io/badge/stable-v1.0.0-blue)
+[![](https://img.shields.io/badge/downloads-4.57%20KB-orange)](https://packagist.org/packages/ar414/redis-lock)
 ![](https://img.shields.io/badge/coverage-100%25-green)
 ![](https://img.shields.io/badge/license-MIT-brightgreen)
 
