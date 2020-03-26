@@ -1,0 +1,26 @@
+{
+    "name": "ar414/redis-lock",
+    "description": "Redis Pessimistic Lock uses redis keys: setnx, get, getset, del",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "ar414",
+            "email": "root@ar414.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "php": ">=5.6.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Ar414\\": "src/"
+        }
+    },
+    "autoload-dev": {
+      "psr-4": {
+        "Test\\": "test/"
+      }
+    }
+}
