@@ -9,7 +9,7 @@ $redis->connect('127.0.0.1','6379');
 $lockTimeOut = 5;
 $redisLock = new RedisLock($redis,$lockTimeOut);
 
-$lockKey = $userWalletInfo['uid'];
+$lockKey = 'lock:user:wallet:uid:1001';
 $isGet = $redisLock->getLock($lockKey);
 var_dump($isGet);
 if($isGet) {
