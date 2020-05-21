@@ -27,23 +27,17 @@ class RedisLock
         if ($isGet) {
             return $expireAt;
         }
-
         while (1) {
             usleep(10);
             $time = time();
             $oldExpire = $this->redis->get($lockCacheKey);
             if ($oldExpire >= $time) {
-                continue;
+                continue; 
             }
             $newExpire = $time + $timeout;
             $expireAt = $this->redis->getset($lockCacheKey, $newExpire);
-            if ($oldExpire != $expireAt) {
-                continue;
-            }
-            $isGet = $newExpire;
-            break;
+            return $expireAt;   
         }
-        return $isGet;
     }
 
     public function releaseLock($key, $newExpire)
